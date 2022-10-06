@@ -1,6 +1,6 @@
 import { Pool } from 'pg';
 
-const createConection = async () => {
+const createConnection = async () => {
   const client = new Pool({
     host: process.env.POSTGRESQL_HOST,
     user: process.env.POSTGRESQL_USER,
@@ -11,4 +11,4 @@ const createConection = async () => {
   return client;
 };
 
-export { createConection };
+export { createConnection };
