@@ -14,23 +14,29 @@
     "typeRoots": ["./node_modules/@types", "./src/@types"],
     "skipLibCheck": true,
     "paths": {
+      "@repositories/*": [
+        "./src/repositories/*"
+      ],
+      "@controllers/*": [
+        "./src/controllers/*"
+      ],
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@validators/*": [
+        "./src/validators/*"
+      ],
       "@services/*": [
         "./src/services/*"
       ],
       "@configs/*": [
         "./src/configs/*"
       ],
-      "@interfaces/*": [
-        "./src/interfaces/*"
+      "@entities/*": [
+        "./src/entities/*"
       ],
-      "@controllers/*": [
-        "./src/controllers/*"
-      ],
-      "@validators/*": [
-        "./src/validators/*"
-      ],
-      "@repositories/*": [
-        "./src/repositories/*"
+      "@core/*": [
+        "./src/core/*"
       ],
     }
   },
