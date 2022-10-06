@@ -45,5 +45,7 @@ typings/
 # dotenv environment variables file
 .env
 
+tmp/*
+!tmp/uploads
 tmp/uploads/*
 !tmp/uploads/.gitkeep
