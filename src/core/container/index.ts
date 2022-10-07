@@ -9,6 +9,9 @@ import { OpeningHoursRepository as OpeningHoursRepositoryInterface } from '@inte
 import { StorageProvider } from './providers/StorageProvider';
 import { StorageProvider as StorageProviderInterface } from '@interfaces/storageProvider.interface';
 
+import { ProductsRepository } from '@repositories/product.repository';
+import { ProductsRepository as ProductsRepositoryInterface } from '@interfaces/product.interface';
+
 container.registerSingleton<StorageProviderInterface>(
   'StorageProvider',
   StorageProvider,
@@ -22,4 +25,9 @@ container.registerSingleton<RestaurantsRepositoryInterface>(
 container.registerSingleton<OpeningHoursRepositoryInterface>(
   'OpeningHoursRepository',
   OpeningHoursRepository,
+);
+
+container.registerSingleton<ProductsRepositoryInterface>(
+  'ProductsRepository',
+  ProductsRepository,
 );
