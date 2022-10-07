@@ -17,13 +17,434 @@
   "paths": {
     "/restaurants": {
       "post": {
-        "description": "",
+        "tags": ["Restaurants"],
+        "summary": "Cadastrar restaurante",
+        "description": "Endpoint para o cadastro de novos restaurantes",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "name": "Chico foods",
+                  "city": "São Paulo",
+                  "address": "Av. Paulista",
+                  "number": "1400",
+                  "state": "São Paulo",
+                  "country": "Brasil",
+                  "postal_code": "18279-050",
+                  "opening_hours": [
+                    {
+                      "weekday": "sunday",
+                      "start_at": "11:00",
+                      "finish_at": "12:00"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/RestaurantData"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Restaurants"],
+        "summary": "Listar todos os restaurantes",
+        "description": "Endpoint para listar todos os restaurantes registrados",
         "parameters": [],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/RestaurantData"
+                  }
+                }
+              }
+            }
           }
         }
+      }
+    },
+    "/restaurants/{restaurantId}": {
+      "get": {
+        "tags": ["Restaurants"],
+        "summary": "Listar um restaurante",
+        "description": "Endpoint para listar apenas um restaurante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/RestaurantData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Restaurants"],
+        "summary": "Editar um restaurante",
+        "description": "Endpoint para editar um restaurante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "name": "Chico foods",
+                  "city": "São Paulo",
+                  "address": "Av. Paulista",
+                  "number": "1400",
+                  "state": "São Paulo",
+                  "country": "Brasil",
+                  "postal_code": "18279-050",
+                  "opening_hours": [
+                    {
+                      "weekday": "sunday",
+                      "start_at": "11:00",
+                      "finish_at": "12:00"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/RestaurantData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Restaurants"],
+        "summary": "Deletar um restaurante",
+        "description": "Endpoint para deletar um restaurante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/restaurants/{restaurantId}/photo": {
+      "patch": {
+        "tags": ["Restaurants"],
+        "summary": "Atualizar foto do restaurante",
+        "description": "Endpoint para atualizar foto do restaurante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "example": {
+                  "photo": "photo.jpg"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/RestaurantData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/restaurants/{restaurantId}/products": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Cadastrar produto",
+        "description": "Endpoint para o cadastro de novos produtos",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "name": "Coca cola",
+                  "price": 3.33,
+                  "category": "Refrigerantes"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ProductsData"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Products"],
+        "summary": "Listar todos os produtos de um restaurante",
+        "description": "Endpoint para listar todos os produtos de um restaurante",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/ProductsData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/restaurants/{restaurantId}/products/{productId}": {
+      "put": {
+        "tags": ["Products"],
+        "summary": "Editar um produto",
+        "description": "Endpoint para editar um produto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "example": {
+                  "name": "Coca cola zero",
+                  "price": 3.33,
+                  "category": "Refrigerantes sem açucar"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ProductsData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Deletar um produto",
+        "description": "Endpoint para deletar um produto",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/restaurants/{restaurantId}/products/{productId}/photo": {
+      "patch": {
+        "tags": ["Products"],
+        "summary": "Atualizar foto de um produto",
+        "description": "Endpoint para atualizar fotos dos produtos",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "productId",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "photo": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "example": {
+                  "photo": "photo.jpg"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/ProductsData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "RestaurantData": {
+      "type": "object",
+      "example": {
+        "id": "b6428ee5-f18c-4661-9b23-f380fb464b29",
+        "name": "Chico foods",
+        "city": "São Paulo",
+        "address": "Av. Paulista",
+        "number": "1400",
+        "state": "São Paulo",
+        "country": "Brasil",
+        "postal_code": "18279-050",
+        "photo": "23ce532d0b6ab7e4846c-photo.jpg",
+        "opening_hours": [
+          {
+            "weekday": "sunday",
+            "start_time": "11:00",
+            "finish_time": "15:00"
+          }
+        ],
+        "created_at": "2022-10-07T11:14:10.373Z",
+        "updated_at": "2022-10-07T11:14:10.373Z"
+      }
+    },
+    "ProductsData": {
+      "type": "object",
+      "example": {
+        "id": "cb927f48-7f38-41e7-b3d9-7f400ead7ebd",
+        "name": "Coca cola",
+        "photo": "23ce532d0b6ab7e4846c-photo.jpg",
+        "category": "Refrigerantes",
+        "created_at": "2022-10-07T11:14:10.373Z",
+        "updated_at": "2022-10-07T11:14:10.373Z"
       }
     }
   }
