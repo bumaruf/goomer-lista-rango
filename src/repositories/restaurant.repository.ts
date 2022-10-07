@@ -48,7 +48,7 @@ export class RestaurantsRepository implements RestaurantsRepositoryInterface {
     return rows;
   }
 
-  public async findOne(id: string): Promise<RestaurantEntity> {
+  public async findOne(id: string): Promise<RestaurantEntity | null> {
     const client = await createConnection();
 
     const { rows } = await client.query(
@@ -76,11 +76,10 @@ export class RestaurantsRepository implements RestaurantsRepositoryInterface {
     address,
     country,
     postal_code,
-  }: UpdateRestaurantRepository): Promise<RestaurantEntity | undefined> {
+  }: UpdateRestaurantRepository): Promise<RestaurantEntity | null> {
     const client = await createConnection();
 
-    // eslint-disable-next-line prefer-const
-    let optionalParameters = [];
+    const optionalParameters = [];
 
     if (name) optionalParameters.push(`NAME = '${name}'`);
     if (city) optionalParameters.push(`CITY = '${city}'`);
@@ -90,15 +89,19 @@ export class RestaurantsRepository implements RestaurantsRepositoryInterface {
     if (country) optionalParameters.push(`COUNTRY = '${country}'`);
     if (postal_code) optionalParameters.push(`POSTAL_CODE = '${postal_code}'`);
 
-    if (optionalParameters.length === 0) return;
+    if (optionalParameters.length === 0) {
+      return null;
+    }
 
     const updatedParams = optionalParameters.join(', ');
 
-    const { rows } = await client.query(
+    const {
+      rows: [updatedRestaurant],
+    } = await client.query(
       `UPDATE RESTAURANTS SET ${updatedParams} WHERE ID = '${id}' RETURNING *`,
     );
 
-    return rows[0];
+    return updatedRestaurant;
   }
 
   public async updatePhotoById({
@@ -110,11 +113,13 @@ export class RestaurantsRepository implements RestaurantsRepositoryInterface {
   }): Promise<RestaurantEntity> {
     const client = await createConnection();
 
-    const { rows } = await client.query(
+    const {
+      rows: [updatedRestaurant],
+    } = await client.query(
       `UPDATE RESTAURANTS SET PHOTO = '${filename}' WHERE ID = '${id}' RETURNING *`,
     );
 
-    return rows[0];
+    return updatedRestaurant;
   }
 
   public async delete(id: string): Promise<void> {

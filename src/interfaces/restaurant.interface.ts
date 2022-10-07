@@ -36,7 +36,7 @@ export interface RestaurantsRepository {
 
   findAll(): Promise<RestaurantEntity[]>;
 
-  findOne(id: string): Promise<RestaurantEntity>;
+  findOne(id: string): Promise<RestaurantEntity | null>;
 
   updateById({
     id,
@@ -47,7 +47,7 @@ export interface RestaurantsRepository {
     address,
     country,
     postal_code,
-  }: UpdateRestaurantRepository): Promise<RestaurantEntity | undefined>;
+  }: UpdateRestaurantRepository): Promise<RestaurantEntity | null>;
 
   updatePhotoById({
     id,

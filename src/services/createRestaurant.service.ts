@@ -6,9 +6,10 @@ import {
 } from '@interfaces/restaurant.interface';
 import { OpeningHoursRepository } from '@interfaces/openingHours.interface';
 
-import { RestaurantEntity } from '../entities/restaurant.entity';
-import { AppError } from '../core/errors/AppError';
-import { OpeningHoursEntity } from '../entities/openingHours.entity';
+import { OpeningHoursEntity } from '@entities/openingHours.entity';
+import { RestaurantEntity } from '@entities/restaurant.entity';
+
+import { AppError } from '@core/errors/AppError';
 
 @injectable()
 export class CreateRestaurantService {
