@@ -12,7 +12,33 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./node_modules/@types", "./src/@types"],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "paths": {
+      "@repositories/*": [
+        "./src/repositories/*"
+      ],
+      "@controllers/*": [
+        "./src/controllers/*"
+      ],
+      "@interfaces/*": [
+        "./src/interfaces/*"
+      ],
+      "@validators/*": [
+        "./src/validators/*"
+      ],
+      "@services/*": [
+        "./src/services/*"
+      ],
+      "@configs/*": [
+        "./src/configs/*"
+      ],
+      "@entities/*": [
+        "./src/entities/*"
+      ],
+      "@core/*": [
+        "./src/core/*"
+      ],
+    }
   },
   "include": ["src/**/*"]
 }

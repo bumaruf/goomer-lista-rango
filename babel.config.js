@@ -8,12 +8,13 @@ module.exports = {
       'module-resolver',
       {
         alias: {
+          '@repositories': './src/repositories',
           '@controllers': './src/controllers',
           '@interfaces': './src/interfaces',
           '@validators': './src/validators',
           '@services': './src/services',
-          '@config': './src/config',
-          '@models': './src/models',
+          '@configs': './src/configs',
+          '@core': './src/core',
         },
       },
     ],
