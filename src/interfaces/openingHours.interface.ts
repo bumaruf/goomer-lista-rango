@@ -15,15 +15,7 @@ export interface OpeningHoursRepository {
     opening_hours: CreateOpeningHourRepository[],
   ): Promise<OpeningHoursEntity[]>;
 
-  findByRestaurantId({
-    restaurantId,
-  }: {
-    restaurantId: string;
-  }): Promise<OpeningHoursEntity[]>;
+  findByRestaurantId(restaurantId: string): Promise<OpeningHoursEntity[]>;
 
-  deleteByRestaurantId({
-    restaurantId,
-  }: {
-    restaurantId: string;
-  }): Promise<void>;
+  deleteByRestaurantId(restaurantId: string): Promise<void>;
 }

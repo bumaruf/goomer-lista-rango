@@ -9,7 +9,7 @@ import {
 import { OpeningHoursEntity } from '@entities/openingHours.entity';
 
 export class OpeningHoursRepository implements OpeningHoursRepositoryInterface {
-  async create(
+  public async create(
     openingHours: CreateOpeningHourRepository[],
   ): Promise<OpeningHoursEntity[]> {
     const client = await createConnection();
@@ -33,19 +33,24 @@ export class OpeningHoursRepository implements OpeningHoursRepositoryInterface {
     return rows;
   }
 
-  findByRestaurantId({
-    restaurantId,
-  }: {
-    restaurantId: string;
-  }): Promise<OpeningHoursEntity[]> {
-    throw new Error('Method not implemented.');
+  public async findByRestaurantId(
+    restaurantId: string,
+  ): Promise<OpeningHoursEntity[]> {
+    const client = await createConnection();
+
+    const { rows } = await client.query(
+      `SElECT WEEKDAY, TO_CHAR(START_AT, 'HH24:MI') AS START_AT, TO_CHAR(FINISH_AT, 'HH24:MI') AS FINISH_AT
+      FROM OPENING_HOURS WHERE RESTAURANT_ID = '${restaurantId}'`,
+    );
+
+    return rows;
   }
 
-  deleteByRestaurantId({
-    restaurantId,
-  }: {
-    restaurantId: string;
-  }): Promise<void> {
-    throw new Error('Method not implemented.');
+  public async deleteByRestaurantId(restaurantId: string): Promise<void> {
+    const client = await createConnection();
+
+    await client.query(
+      `DELETE FROM OPENING_HOURS WHERE RESTAURANT_ID = '${restaurantId}'`,
+    );
   }
 }

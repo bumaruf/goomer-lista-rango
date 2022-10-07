@@ -6,6 +6,14 @@ import { RestaurantsRepository as RestaurantsRepositoryInterface } from '@interf
 import { OpeningHoursRepository } from '@repositories/openingHours.repository';
 import { OpeningHoursRepository as OpeningHoursRepositoryInterface } from '@interfaces/openingHours.interface';
 
+import { StorageProvider } from './providers/StorageProvider';
+import { StorageProvider as StorageProviderInterface } from '@interfaces/storageProvider.interface';
+
+container.registerSingleton<StorageProviderInterface>(
+  'StorageProvider',
+  StorageProvider,
+);
+
 container.registerSingleton<RestaurantsRepositoryInterface>(
   'RestaurantsRepository',
   RestaurantsRepository,

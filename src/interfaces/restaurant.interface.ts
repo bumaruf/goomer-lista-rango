@@ -13,11 +13,18 @@ export type CreateRestaurantDTO = Omit<
 
 export type CreateRestaurantRepository = Omit<
   RestaurantEntity,
-  'photo' | 'createdAt' | 'updatedAt'
+  'photo' | 'created_at' | 'updated_at'
 >;
+
+export type UpdateRestaurantDTO = Partial<CreateRestaurantDTO> & { id: string };
+
+export type UpdateRestaurantRepository = Partial<
+  Omit<RestaurantEntity, 'photo' | 'created_at' | 'updated_at'>
+> & { id: string };
 
 export interface RestaurantsRepository {
   create({
+    id,
     name,
     city,
     state,
@@ -28,4 +35,27 @@ export interface RestaurantsRepository {
   }: CreateRestaurantRepository): Promise<RestaurantEntity>;
 
   findAll(): Promise<RestaurantEntity[]>;
+
+  findOne(id: string): Promise<RestaurantEntity>;
+
+  updateById({
+    id,
+    name,
+    city,
+    state,
+    number,
+    address,
+    country,
+    postal_code,
+  }: UpdateRestaurantRepository): Promise<RestaurantEntity | undefined>;
+
+  updatePhotoById({
+    id,
+    filename,
+  }: {
+    id: string;
+    filename: string;
+  }): Promise<RestaurantEntity>;
+
+  delete(id: string): Promise<void>;
 }
