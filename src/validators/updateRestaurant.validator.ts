@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { ValidationError } from 'yup';
+import { ValidationError, AnySchema } from 'yup';
 
 import { UpdateRestaurantDTO } from '@interfaces/restaurant.interface';
 import { AppError } from '@core/errors/AppError';
@@ -17,8 +17,7 @@ const weekdays: string[] = [
 ];
 
 export class UpdateRestaurantValidator {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private yupSchema: any;
+  private yupSchema!: AnySchema;
 
   public data: UpdateRestaurantDTO;
 

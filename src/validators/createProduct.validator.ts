@@ -1,12 +1,11 @@
 import * as yup from 'yup';
-import { ValidationError } from 'yup';
+import { ValidationError, AnySchema } from 'yup';
 
 import { CreateProductDTO } from '@interfaces/product.interface';
 import { AppError } from '@core/errors/AppError';
 
 export class CreateProductValidator {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private yupSchema: any;
+  private yupSchema!: AnySchema;
 
   public data: CreateProductDTO;
 
