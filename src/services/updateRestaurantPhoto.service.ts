@@ -32,7 +32,7 @@ export class UpdateRestaurantPhotoService {
     if (!validateUUID(id)) throw new AppError('Id must be of type uuid', 400);
 
     const foundedRestaurant = await this.restaurantsRepository.findOne(id);
-    if (!foundedRestaurant) throw new AppError('Restaurant not founded', 400);
+    if (!foundedRestaurant) throw new AppError('Restaurant not founded', 404);
 
     if (foundedRestaurant.photo)
       await this.storageProvider.deleteFile(foundedRestaurant.photo);

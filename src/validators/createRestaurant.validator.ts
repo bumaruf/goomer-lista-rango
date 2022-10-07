@@ -29,21 +29,27 @@ export class CreateRestaurantValidator {
 
   private generateSchema() {
     this.yupSchema = yup.object().shape({
-      name: yup.string().required(),
-      address: yup.string().required(),
-      number: yup.string().required(),
-      city: yup.string().required(),
-      state: yup.string().required(),
-      country: yup.string().required(),
-      postal_code: yup.string().required(),
+      name: yup.string().strict().required(),
+      address: yup.string().strict().required(),
+      number: yup.string().strict().required(),
+      city: yup.string().strict().required(),
+      state: yup.string().strict().required(),
+      country: yup.string().strict().required(),
+      postal_code: yup.string().strict().required(),
       opening_hours: yup
         .array()
         .of(
           yup.object().shape({
-            weekday: yup.string().oneOf(weekdays).required(),
-            start_at: yup.string().trim().matches(regexValidateTime).required(),
+            weekday: yup.string().strict().oneOf(weekdays).required(),
+            start_at: yup
+              .string()
+              .strict()
+              .trim()
+              .matches(regexValidateTime)
+              .required(),
             finish_at: yup
               .string()
+              .strict()
               .trim()
               .matches(regexValidateTime)
               .required(),

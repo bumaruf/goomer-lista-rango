@@ -49,10 +49,10 @@ class RestaurantController {
 
   public async show(request: Request, response: Response, next: NextFunction) {
     try {
-      const { id } = request.params;
+      const { restaurantId } = request.params;
 
       const restaurantService = container.resolve(ShowRestaurantsService);
-      const restaurant = await restaurantService.execute(id);
+      const restaurant = await restaurantService.execute(restaurantId);
 
       return response.json(restaurant);
     } catch (error) {
@@ -66,7 +66,7 @@ class RestaurantController {
     next: NextFunction,
   ) {
     try {
-      const { id } = request.params;
+      const { restaurantId } = request.params;
 
       const validatedBodyParams = new UpdateRestaurantValidator(request.body);
       await validatedBodyParams.validate();
@@ -74,7 +74,7 @@ class RestaurantController {
       const restaurantService = container.resolve(UpdateRestaurantService);
       const restaurant = await restaurantService.execute({
         ...validatedBodyParams.data,
-        id,
+        id: restaurantId,
       });
 
       return response.json(restaurant);
@@ -89,14 +89,14 @@ class RestaurantController {
     next: NextFunction,
   ) {
     try {
-      const { id } = request.params;
+      const { restaurantId } = request.params;
       const filename = request.file?.filename;
 
-      if (!filename) throw new AppError('error');
+      if (!filename) throw new AppError('Filename error');
 
       const restaurantService = container.resolve(UpdateRestaurantPhotoService);
       const updatedRestaurantPhoto = await restaurantService.execute({
-        id,
+        id: restaurantId,
         filename,
       });
 
@@ -112,10 +112,10 @@ class RestaurantController {
     next: NextFunction,
   ) {
     try {
-      const { id } = request.params;
+      const { restaurantId } = request.params;
 
       const restaurantService = container.resolve(DeleteRestaurantsService);
-      await restaurantService.execute(id);
+      await restaurantService.execute(restaurantId);
 
       return response.status(204).send();
     } catch (error) {
