@@ -1,0 +1,348 @@
+{
+	"info": {
+		"_postman_id": "28188899-f7fc-4cdb-ad62-268d9d339573",
+		"name": "Goomer Lista Rango",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11356938"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Create a new product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Coca cola\",\n    \"price\": 3.30,\n    \"category\": \"Refrigerante\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:restaurantId/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":restaurantId",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "d237d967-dea9-4828-8dd4-06e202910cd0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List products by restaurantId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:restaurantId/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":restaurantId",
+								"products"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "d237d967-dea9-4828-8dd4-06e202910cd0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Coca cola ZERO\",\n    \"price\": 3.10,\n    \"category\": \"Refrigerantes sem açucar\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:restaurantId/products/:productId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":restaurantId",
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "0995fb15-7af7-4f32-b488-6f975a3fd7be"
+								},
+								{
+									"key": "productId",
+									"value": "0995fb15-7af7-4f32-b488-6f975a3fd7be"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:restaurantId/products/:productId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":restaurantId",
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": "0995fb15-7af7-4f32-b488-6f975a3fd7be"
+								},
+								{
+									"key": "productId",
+									"value": "0995fb15-7af7-4f32-b488-6f975a3fd7be"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update product photo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:restaurantId/products/:productId/photo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":restaurantId",
+								"products",
+								":productId",
+								"photo"
+							],
+							"variable": [
+								{
+									"key": "restaurantId",
+									"value": null
+								},
+								{
+									"key": "productId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Restaurants",
+			"item": [
+				{
+					"name": "Create a new restaurant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Chico foods\",\n    \"city\": \"São Paulo\",\n    \"address\": \"Av. Prof Zilah\",\n    \"number\": \"1400\",\n    \"state\": \"Sao Paulo\",\n    \"country\": \"Brazil\",\n    \"postal_code\": \"123123\",\n    \"opening_hours\": [\n        {\n            \"weekday\": \"sunday\",\n            \"start_at\": \"22:00\",\n            \"finish_at\": \"23:00\"\n        },\n        {\n            \"weekday\": \"monday\",\n            \"start_at\": \"11:00\",\n            \"finish_at\": \"14:00\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurants",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show restaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "bb77f075-16db-461f-98f7-c78290c3b07b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an restaurant",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Clebinho foods\",\n    \"city\": \"Tatui\",\n    \"address\": \"Av. Prof Zilah\",\n    \"number\": \"1400\",\n    \"state\": \"Sao Paulo\",\n    \"country\": \"Brazil\",\n    \"postal_code\": \"123123\",\n    \"opening_hours\": [\n        {\n            \"weekday\": \"tuesday\",\n            \"start_at\": \"11:00\",\n            \"finish_at\": \"11:15\"\n        },\n        {\n            \"weekday\": \"monday\",\n            \"start_at\": \"11:00\",\n            \"finish_at\": \"14:00\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "b90bf317-a287-47c2-af12-cd2336540eb4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an restaurant",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "b90bf317-a287-47c2-af12-cd2336540eb4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update restaurant photo",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/restaurants/:id/photo",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"restaurants",
+								":id",
+								"photo"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "4b7a05aa-ff32-4475-b7ae-2069582a4cb4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
