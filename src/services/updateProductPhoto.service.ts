@@ -29,8 +29,6 @@ export class UpdateProductPhotoService {
 
     const foundedProduct = await this.productRepository.findOne(id);
 
-    console.log(foundedProduct);
-
     if (!foundedProduct) throw new AppError('Product not founded', 404);
 
     if (foundedProduct.photo)

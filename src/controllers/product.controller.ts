@@ -79,14 +79,14 @@ class ProductController {
     next: NextFunction,
   ) {
     try {
-      const { restaurantId } = request.params;
+      const { productId } = request.params;
       const filename = request.file?.filename;
 
       if (!filename) throw new AppError('Filename error');
 
       const productService = container.resolve(UpdateProductPhotoService);
       const updatedProductPhoto = await productService.execute({
-        id: restaurantId,
+        id: productId,
         filename,
       });
 

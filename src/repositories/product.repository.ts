@@ -22,7 +22,7 @@ export class ProductsRepository implements ProductsRepositoryInterface {
       rows: [product],
     } = await client.query(
       `INSERT INTO PRODUCTS(ID, NAME, PRICE, CATEGORY, RESTAURANT_ID) VALUES($1, $2, $3, $4, $5)
-      RETURNING ID, NAME, PHOTO, PRICE::FLOAT, CREATED_AT, UPDATED_AT`,
+      RETURNING ID, NAME, PHOTO, PRICE::FLOAT, CATEGORY, CREATED_AT, UPDATED_AT`,
       [id, name, price, category, restaurant_id],
     );
 

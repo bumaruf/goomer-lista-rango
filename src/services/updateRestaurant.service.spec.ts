@@ -46,32 +46,20 @@ describe('Create restaurant service', () => {
   });
 
   it('should be able to update a restaurant', async () => {
+    const updatedName = 'Clebinho foods';
+
     const restaurant = await updateRestaurantService.execute({
       id: '938ad486-2a4e-4485-bd5a-4e31b27c5099',
-      name: 'Clebinho foods',
-      city: 'Tatuí',
-      address: 'Av. Prof Zilah',
-      number: '1400',
-      state: 'Sao Paulo',
-      country: 'Brazil',
-      postal_code: '123123',
-      opening_hours: OpeningHoursMock.createMock,
+      name: updatedName,
     });
 
-    expect(restaurant).toHaveProperty('id');
+    expect(restaurant.name).toBe(updatedName);
   });
 
   it('should not be able to update a restaurant if id is invalid', async () => {
     const promise = updateRestaurantService.execute({
       id: 'invalid-uuid',
       name: 'Clebinho foods',
-      city: 'Tatuí',
-      address: 'Av. Prof Zilah',
-      number: '1400',
-      state: 'Sao Paulo',
-      country: 'Brazil',
-      postal_code: '123123',
-      opening_hours: OpeningHoursMock.createMock,
     });
 
     await expect(promise).rejects.toBeInstanceOf(AppError);
@@ -85,12 +73,6 @@ describe('Create restaurant service', () => {
     const promise = updateRestaurantService.execute({
       id: '938ad486-2a4e-4485-bd5a-4e31b27c5099',
       name: 'Clebinho foods',
-      city: 'Tatuí',
-      address: 'Av. Prof Zilah',
-      number: '1400',
-      state: 'Sao Paulo',
-      country: 'Brazil',
-      postal_code: '123123',
       opening_hours: OpeningHoursMock.createMock,
     });
 
@@ -101,12 +83,6 @@ describe('Create restaurant service', () => {
     const restaurant = await updateRestaurantService.execute({
       id: '938ad486-2a4e-4485-bd5a-4e31b27c5099',
       name: 'Clebinho foods',
-      city: 'Tatuí',
-      address: 'Av. Prof Zilah',
-      number: '1400',
-      state: 'Sao Paulo',
-      country: 'Brazil',
-      postal_code: '123123',
     });
 
     expect(restaurant).toHaveProperty('id');
