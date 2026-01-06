@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express';
 
 import RestaurantController from '@controllers/restaurant.controller';
 import ProductController from '@controllers/product.controller';
+import MenuController from '@controllers/menu.controller';
 
 import swagger from '../swagger.json';
 
@@ -28,6 +29,9 @@ router.patch(
   photoUpload.single('photo'),
   ProductController.updatePhoto,
 );
+
+// Menu routes
+router.get('/restaurants/:restaurantId/menu', MenuController.index);
 
 // Restaurant routes
 router.post('/restaurants', RestaurantController.create);

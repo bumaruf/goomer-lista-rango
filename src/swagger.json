@@ -410,6 +410,36 @@
           }
         }
       }
+    },
+    "/restaurants/{restaurantId}/menu": {
+      "get": {
+        "tags": ["Menu"],
+        "summary": "Listar cardápio do restaurante",
+        "description": "Endpoint para listar o cardápio completo de um restaurante organizado por categorias",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "restaurantId",
+            "description": "Id do restaurante",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/MenuData"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -445,6 +475,45 @@
         "category": "Refrigerantes",
         "created_at": "2022-10-07T11:14:10.373Z",
         "updated_at": "2022-10-07T11:14:10.373Z"
+      }
+    },
+    "MenuData": {
+      "type": "object",
+      "example": {
+        "restaurant_id": "b6428ee5-f18c-4661-9b23-f380fb464b29",
+        "restaurant_name": "Chico foods",
+        "categories": [
+          {
+            "category": "Bebidas",
+            "products": [
+              {
+                "id": "cb927f48-7f38-41e7-b3d9-7f400ead7ebd",
+                "name": "Coca cola",
+                "photo": "23ce532d0b6ab7e4846c-photo.jpg",
+                "price": 3.33,
+                "category": "Bebidas",
+                "restaurant_id": "b6428ee5-f18c-4661-9b23-f380fb464b29",
+                "created_at": "2022-10-07T11:14:10.373Z",
+                "updated_at": "2022-10-07T11:14:10.373Z"
+              }
+            ]
+          },
+          {
+            "category": "Pratos Principais",
+            "products": [
+              {
+                "id": "a1234abc-5678-9def-0123-456789abcdef",
+                "name": "Feijoada",
+                "photo": "feijoada.jpg",
+                "price": 25.90,
+                "category": "Pratos Principais",
+                "restaurant_id": "b6428ee5-f18c-4661-9b23-f380fb464b29",
+                "created_at": "2022-10-07T11:14:10.373Z",
+                "updated_at": "2022-10-07T11:14:10.373Z"
+              }
+            ]
+          }
+        ]
       }
     }
   }
